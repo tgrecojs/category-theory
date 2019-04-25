@@ -17,12 +17,9 @@ const isNothing = x => x === null || x === undefined
 const Maybe = x => ({
 	valueOf: () => x,
 	map: f => (isNothing(x) ? Maybe(null) : Maybe(f(x))),
-	inspect: () => `Identity:: ${x}`,
-	toString: () => x.toString()
+	inspect: () => `Identity:: ${x}`
 })
 
-Maybe.of = x => Maybe(x)
-Maybe.of('Thomas') //?
 compare(
 	Maybe(10)
 		.map(timesTen)
@@ -32,8 +29,6 @@ compare(
 const id = x => x
 const data = Maybe(10).map(x => id(x * 2))
 compare(
-	Maybe(10).map(x => id(x * 2)),
-	Maybe(10)
-		.map(id)
-		.map(id)
+	Maybe(10).map(id).toString(),
+	Maybe(10).toString()
 ) //?
